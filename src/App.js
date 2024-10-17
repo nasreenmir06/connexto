@@ -79,18 +79,6 @@ function App() {
     window.location.href = window.location.pathname + '?mode=' + newMode;
   };
 
-  const getRandomLetter = () => {
-    return letters[Math.floor(Math.random() * letters.length)];
-  };
-
-  const getRandomLetterExcludingJQV = () => {
-    let letter;
-    do {
-      letter = letters[Math.floor(Math.random() * letters.length)];
-    } while (letter === 'J' || letter === 'Q' || letter === 'V');
-    return letter;
-  };
-
   const handleInput = (rowIndex, letterIndex, value) => {
     setError(''); 
     
