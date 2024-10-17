@@ -1,38 +1,266 @@
-.App {
+h1 {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.game-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.letter-box {
+  width: 50px;
+  height: 50px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #ccc;
+  border: 2px solid #000;
+  text-transform: uppercase;
+}
+
+.input-box {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  text-transform: uppercase;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.input-box input:focus {
+  outline: none;
+  border-color: #000;
+}
+
+#inputRows {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.toggleContainer {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: fit-content;
+  border: 3px solid #343434;
+  border-radius: 20px;
+  background: #343434;
+  font-weight: bold;
+  color: #343434;
+  cursor: pointer;
+}
+
+.toggleContainer::before {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0%;
+  border-radius: 20px;
+  background: white;
+  transition: all 0.3s;
+  z-index: 0;
+}
+
+.toggleCheckbox:checked + .toggleContainer::before {
+  left: 50%;
+}
+
+.toggleContainer div {
+  padding: 6px;
+  text-align: center;
+  z-index: 1;
+  transition: color 0.3s;
+}
+
+.toggleCheckbox {
+  display: none;
+}
+
+.toggleCheckbox:checked + .toggleContainer div:first-child {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.toggleCheckbox:checked + .toggleContainer div:last-child {
+  color: #343434;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.toggleCheckbox + .toggleContainer div:first-child {
+  color: #343434;
+}
+
+.toggleCheckbox + .toggleContainer div:last-child {
+  color: white;
+}
+
+.error-paragraph {
+  background-color: red; 
+  color: white;     
+  padding: 10px;     
+  border-radius: 5px;  
+  display: none;
+}
+
+.newGameContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; 
+}
+
+#newGame {
+  padding: 10px 20px; 
+  font-size: 16px;  
+  cursor: pointer;
+}
+
+.styled-paragraph {
+  background-color: red; 
+  color: white; 
+  padding: 10px;
+  border-radius: 5px; 
+  margin-top: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hint-container {
+  margin-left: auto;
+  margin-right: 50px;
+}
+
+.hint-text {
+  background-color: #b3a258ff; 
+  color: white; 
+  padding: 5px 10px;        
+  border-radius: 10px;      
+  font-size: 1.0em;         
+}
+
+.score-display {
+  background-color: #1b4e9dff;
+  color: white;
+  width: 300px; 
+  padding: 20px; 
+  border-radius: 10px; 
+  text-align: center; 
+  margin: 20px auto; 
+  position: relative; 
+  top: 0;
+}
+
+.score-display p {
+  margin: 5px 0; 
+}
+
+.hover-text {
+  display: none;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.nav-item:hover .hover-text {
+  display: block;
+}
+
+.navbar {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+  padding-top: .3125rem;
+  padding-bottom: .3125rem;
+  margin-right: 1rem;
+  white-space: nowrap;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navbar-nav {
+  margin-right: 0; 
+}
+
+.navbar-nav .nav-item {
+  margin-right: 20px;
+}
+
+.navbar-toggler {
+  margin-left: 10px; 
+}
+
+@media (min-width: 992px) { 
+  .navbar-nav {
+    margin-right: 100px; 
   }
 }
+
+input.form-control {
+  width: 70px;
+  height: 70px;
+  padding: 0; 
+  font-size: 24px;
+  box-sizing: border-box; 
+}
+
+input.form-control.text-center {
+  text-align: center; 
+}
+
+#startLetterRow, #endLetterRow {
+  width: 70px;
+  height: 70px;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 35px !important;
+}
+
+
+
+
+
+
+
+
+
