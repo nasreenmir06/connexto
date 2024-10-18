@@ -205,7 +205,7 @@ function App() {
               <li className="nav-item position-relative">
                 <a className="nav-link active" aria-current="page" href="#">Instructions</a>
                 <div className="hover-text">
-                Enter words that start with the last letter of the previous word. You have been given a starting letter, and an end goal letter. In easy mode, your score is calculated solely by how many words it takes you to reach the end letter. In hard mode, your score is calculated by how many words you used to reach the end letter, along with a “context score” - the similarity between the word you entered and the previous word. A hint will give you a word that ends with the goal letter, and can be obtained by solving a puzzle in one word (NOTE: not always possible).
+                Enter words that start with the last letter of the previous word. You have been given a starting letter, and an end goal letter. In easy mode, your score is calculated solely by how many words it takes you to reach the end letter. In hard mode, your score is calculated by how many words you used to reach the end letter, along with a “context score” - the similarity between the word you entered and the previous word. A hint will give you a word that ends with the goal letter.
                 </div>
               </li>
               <li className="nav-item position-relative">
