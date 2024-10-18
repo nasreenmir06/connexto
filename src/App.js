@@ -33,40 +33,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (getCookie('freeGuesses') === null) {
-      setCookie('freeGuesses', 0, 7);
-      console.log("Initialized freeGuesses to 0");
-    }
-  }, []);
-
-  const setCookie = (name, value, days) => {
-    let expires = "";
-    if (days) {
-      const date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
-  };
-  const getCookie = (name) => {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  };
-
-  const updateFreeGuesses = () => {
-    let freeGuesses = parseInt(getCookie('freeGuesses')) || 0;
-    freeGuesses += 1;
-    setCookie('freeGuesses', freeGuesses, 7);
-    console.log("Updated freeGuesses:", freeGuesses);
-  };
-
-  useEffect(() => {
     const initialMode = new URLSearchParams(window.location.search).get('mode');
     if (initialMode) {
       setMode(initialMode);
@@ -194,7 +160,6 @@ function App() {
     if (mode === 'hard' && inputRows.length > 1) {
       finalScore = (100/(1+(similarityScore.length))) * ((avg-Cmin)/(Cmax-Cmin) ** a);
     } else if (inputRows.length === 1) {
-      updateFreeGuesses();
       finalScore = 100;
     } else {
       finalScore = 100 - (20 * (inputRows.length - 1));
@@ -204,12 +169,8 @@ function App() {
     console.log("Score: " + String(finalScore));
   };  
 
-
   const fetchHint = () => {
-    let freeGuesses = parseInt(getCookie('freeGuesses')) || 0;
-  
-    if (freeGuesses > 0) {
-      fetch(`http://127.0.0.1:5000/get_hint?letter=${endLetter.toLowerCase()}`)
+    fetch(`http://127.0.0.1:5000/get_hint?letter=${endLetter.toLowerCase()}`)
         .then(response => response.json())
         .then(data => {
           if (data.word) {
@@ -218,16 +179,8 @@ function App() {
             setHint(`No hints available for words ending with ${endLetter}.`);
           }
           setHintVisible(true);
-  
-          freeGuesses -= 1;
-          setCookie('freeGuesses', freeGuesses, 7);
-          console.log("Updated freeGuesses:", freeGuesses);
         })
         .catch(error => console.error('Error fetching hint:', error));
-    } else {
-      setHint(`No free hints available.`);
-      setHintVisible(true);
-    }
   };
   
   return (
@@ -293,20 +246,16 @@ function App() {
   
         <div className="header text-center mb-4">
           <div className="hint-container">
-            {parseInt(getCookie('freeGuesses')) > 0 ? (
-              !hintVisible ? (
-                <button className="btn btn-info" onClick={fetchHint}>
-                  Hint
-                </button>
-              ) : (
-                <p className="hint-text">{hint}</p>
-              )
+            {!hintVisible ? (
+              <button className="btn btn-info" onClick={fetchHint}>
+                Hint
+              </button>
             ) : (
-              <p className="hint-text">No more free hints available.</p>
+              <p className="hint-text">{hint}</p>
             )}
           </div>
         </div>
-  
+
         <div className="game-container text-center">
           <div className="row mb-4">
             <div id="startLetterRow" className="letter-box col-12">{startLetter}</div>
