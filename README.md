@@ -5,7 +5,7 @@ Enter words that start with the last letter of the previous word. You have been 
 
 [https://github.com/user-attachments/assets/8b906917-01bc-4395-8b16-75754ee56f33](https://github.com/user-attachments/assets/d5d9dcab-ef03-44a8-8d43-15bca08d9dc4)
 
-**NOTE:Two large files, essential to the game for word validation and context/similarity calculations, are currently not in the repo. I have tried multiple times, unsuccessfully, to push them to Github. I am still trying to figure out a working solution for this issue.**
+**NOTE: Two large files, essential to the game for word validation and context/similarity calculations, are currently not in the repo. I have tried multiple times, unsuccessfully, to push them to Github. I am still trying to figure out a working solution for this issue.**
 
 # Getting Started with Create React App
 
