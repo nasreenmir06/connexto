@@ -1,5 +1,8 @@
 # Demo Vid
 
+## Instructions
+Enter words that start with the last letter of the previous word. You have been given a starting letter, and an end goal letter. In easy mode, your score is calculated solely by how many words it takes you to reach the end letter. In hard mode, your score is calculated by how many words you used to reach the end letter, along with a “context score” - the similarity between the word you entered and the previous word. A hint will give you a word that ends with the goal letter.
+
 [https://github.com/user-attachments/assets/8b906917-01bc-4395-8b16-75754ee56f33](https://github.com/user-attachments/assets/d5d9dcab-ef03-44a8-8d43-15bca08d9dc4)
 
 # Getting Started with Create React App
